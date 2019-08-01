@@ -42,7 +42,8 @@ Supported Platforms
 
 ### Cordova
 
-    $ cordova plugin add phonegap-nfc
+    $ cordova plugin add https://github.com/jcteng/phonegap-nfc.git
+    $ cordova plugin add https://github.com/jcteng/phonegap-nfc.git #<<branch 
 
 ### PhoneGap
 
