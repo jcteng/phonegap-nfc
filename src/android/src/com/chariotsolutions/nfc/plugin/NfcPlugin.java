@@ -420,6 +420,12 @@ public class NfcPlugin extends CordovaPlugin implements NfcAdapter.OnNdefPushCom
                 } else {
                     message = e.toString();
                 }
+            }catch (Exception e){
+              if (e.getMessage() != null) {
+                  message = e.getMessage();
+              } else {
+                  message = e.toString();
+              }
             }
 
             if (success) {
@@ -544,6 +550,9 @@ public class NfcPlugin extends CordovaPlugin implements NfcAdapter.OnNdefPushCom
                 } catch (IllegalStateException e) {
                     // issue 110 - user exits app with home button while nfc is initializing
                     Log.w(TAG, "Illegal State Exception starting NFC. Assuming application is terminating.");
+                }catch (Exception e){
+                  Log.w(TAG, e.getMessage());
+
                 }
 
             }
@@ -901,6 +910,9 @@ public class NfcPlugin extends CordovaPlugin implements NfcAdapter.OnNdefPushCom
             } catch (InvocationTargetException e) {
                 Log.e(TAG, e.getMessage(), e);
                 callbackContext.error(e.getMessage());
+            }catch (Exception e){
+              Log.e(TAG, e.getMessage(), e);
+              callbackContext.error(e.getMessage());
             }
         });
     }
@@ -919,6 +931,8 @@ public class NfcPlugin extends CordovaPlugin implements NfcAdapter.OnNdefPushCom
             // ignore
         } catch (InvocationTargetException e) {
             // ignore
+        }catch (Exception e){
+          Log.e(TAG, e.getMessage(), e);
         }
     }
 
@@ -943,6 +957,9 @@ public class NfcPlugin extends CordovaPlugin implements NfcAdapter.OnNdefPushCom
             } catch (IOException ex) {
                 Log.e(TAG, "Error closing nfc connection", ex);
                 callbackContext.error("Error closing nfc connection " + ex.getLocalizedMessage());
+            }catch (Exception e){
+              Log.e(TAG, e.getMessage(), e);
+              callbackContext.error(e.getMessage());
             }
         });
     }
@@ -985,6 +1002,9 @@ public class NfcPlugin extends CordovaPlugin implements NfcAdapter.OnNdefPushCom
                 Log.e(TAG, e.getMessage(), e);
                 Throwable cause = e.getCause();
                 callbackContext.error(cause.getMessage());
+            }catch (Exception e){
+              Log.e(TAG, e.getMessage(), e);
+              callbackContext.error(e.getMessage());
             }
         });
     }
